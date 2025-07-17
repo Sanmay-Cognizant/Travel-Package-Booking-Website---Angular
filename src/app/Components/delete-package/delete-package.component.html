@@ -1,0 +1,22 @@
+<div class="delete-package-container">
+  <h2>Delete Package</h2>
+ 
+  <!-- Input Field for Package ID -->
+  <div class="form-group">
+    <label for="packageId">Enter Package ID:</label>
+    <input
+      type="text"
+      id="packageId"
+      name="packageId"
+      [(ngModel)]="packageId"
+      class="form-control"
+      placeholder="Enter Package ID"
+    />
+  </div>
+ 
+  <!-- Delete Button -->
+  <div class="button-group">
+    <button class="btn btn-danger" (click)="onDelete()">Delete Package</button>
+  </div>
+</div>
+ 

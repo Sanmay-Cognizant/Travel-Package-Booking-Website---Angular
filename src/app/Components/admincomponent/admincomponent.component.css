@@ -1,0 +1,93 @@
+/* Admin Dashboard Custom Styles */
+.admin-dashboard .summary-card {
+  border-left: 5px solid #0d6efd;
+  transition: transform 0.2s ease;
+}
+.admin-dashboard .summary-card:hover {
+  transform: translateY(-5px);
+}
+ 
+.admin-dashboard .summary-title {
+  font-size: 0.95rem;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+}
+ 
+.admin-dashboard .summary-value {
+  font-size: 2rem;
+  font-weight: bold;
+}
+ 
+.admin-dashboard .section-title {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #0d6efd;
+  border-left: 4px solid #0d6efd;
+  padding-left: 10px;
+}
+ 
+.table th,
+.table td {
+  vertical-align: middle;
+}
+/* Adjust chart card spacing and sizing */
+.card .card-body canvas {
+  max-height: 300px;
+}
+ 
+/* Center content in the doughnut chart card */
+.card .card-body.text-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card {
+  border-radius: 10px;
+}
+ 
+.card-header {
+  font-weight: bold;
+  font-size: 18px;
+}
+ 
+canvas {
+  max-width: 100%;
+}
+html {
+  scroll-behavior: smooth;
+}
+/* Custom Admin Navbar Styles */
+.admin-dashboard .navbar {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+ 
+.admin-dashboard .navbar-nav .nav-item {
+  list-style: none;
+}
+ 
+.admin-dashboard .navbar-nav .nav-link {
+  color: #0d6efd;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+ 
+.admin-dashboard .navbar-nav .nav-link:hover {
+  background-color: #e9ecef;
+  text-decoration: none;
+}
+
+.booking-status-header {
+  background-color: #36a2eb;
+  color:#ffffff;
+  }
+  
+  .booking-status-body {
+  background-color: #ff6384;
+  }
+  
+ 

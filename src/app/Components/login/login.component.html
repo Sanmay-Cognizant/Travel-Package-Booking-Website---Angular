@@ -1,0 +1,34 @@
+<div class="page">
+  <div class="image-section">
+    <img src="/trail.jpg" alt="Gringo Trail" />
+  </div>
+
+  <div class="form-section">
+    <h1 class="brand">voyger</h1>
+    <div class="tripstext">
+      <h2 class="subtitle">Start your</h2>
+      <h2 class="subtitle">perfect trip</h2>
+    </div>
+
+    <div class="inpandbutton">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <input type="email" placeholder="Email address" formControlName="email" />
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">
+          Username is required
+        </div>
+
+        <input type="password" placeholder="Password" formControlName="password" />
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
+          Password is required
+        </div>
+
+        <button type="submit">Log In</button>
+      </form>
+    </div>
+
+    <p class="login-link">
+      New traveler?
+      <a routerLink="/app-register" routerLinkActive="active" class="register-link" (click)="$event.preventDefault()">Create account</a>
+    </p>
+  </div>
+</div>

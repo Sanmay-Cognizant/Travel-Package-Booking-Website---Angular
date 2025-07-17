@@ -1,0 +1,119 @@
+<div class="add-package-container">
+  <h2>Add New Package</h2>
+  <form (ngSubmit)="onSubmit()" #addPackageForm="ngForm">
+    <!-- Title -->
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        [(ngModel)]="newPackage.title"
+        required
+        class="form-control"
+        placeholder="Enter package title"
+      />
+    </div>
+ 
+    <!-- Duration -->
+    <div class="form-group">
+      <label for="duration">Duration:</label>
+      <input
+        type="text"
+        id="duration"
+        name="duration"
+        [(ngModel)]="newPackage.duration"
+        required
+        class="form-control"
+        placeholder="Enter package duration (e.g., 7 days)"
+      />
+    </div>
+ 
+    <!-- Description -->
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea
+        id="description"
+        name="description"
+        [(ngModel)]="newPackage.description"
+        class="form-control"
+        placeholder="Enter package description"
+      ></textarea>
+    </div>
+ 
+    <!-- Price -->
+    <div class="form-group">
+      <label for="price">Price:</label>
+      <input
+        type="number"
+        id="price"
+        name="price"
+        [(ngModel)]="newPackage.price"
+        required
+        class="form-control"
+        placeholder="Enter package price"
+      />
+    </div>
+ 
+    <!-- Included Services -->
+    <div class="form-group">
+      <label for="includedServices">Included Services:</label>
+      <input
+        type="text"
+        id="includedServices"
+        name="includedServices"
+        [(ngModel)]="newPackage.includedServices"
+        class="form-control"
+        placeholder="Enter included services"
+      />
+    </div>
+ 
+    <!-- Category -->
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <input
+        type="text"
+        id="category"
+        name="category"
+        [(ngModel)]="newPackage.category"
+        class="form-control"
+        placeholder="Enter package category"
+      />
+    </div>
+ 
+    <!-- Travel Agent -->
+    <div class="form-group">
+      <label for="travelAgent">Travel Agent:</label>
+      <input
+        type="text"
+        id="travelAgent"
+        name="travelAgent"
+        [(ngModel)]="newPackage.travelAgent"
+        class="form-control"
+        placeholder="Enter travel agent name"
+      />
+    </div>
+ 
+    <!-- Image -->
+    <div class="form-group">
+      <label for="image">Image URL:</label>
+      <input
+        type="text"
+        id="image"
+        name="image"
+        [(ngModel)]="newPackage.image"
+        class="form-control"
+        placeholder="Enter image URL"
+      />
+    </div>
+ 
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary" [disabled]="!addPackageForm.form.valid">
+      Add Package
+    </button>
+    <div>
+      <button (click)="goBack()" class="btn btn-danger m-0">Back</button>
+    </div>
+  </form>
+</div>
+ 

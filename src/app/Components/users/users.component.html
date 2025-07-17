@@ -1,0 +1,70 @@
+<div class="users-container">
+  <h2>Manage Users</h2>
+
+  <!-- Form for editing users -->
+  <form *ngIf="isEditing" [formGroup]="userForm" (ngSubmit)="updateUser()" class="form-container">
+    <div class="form-group">
+      <label for="userID">User ID:</label>
+      <input id="userID" [value]="userID" name="userID" disabled />
+    </div>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input id="name" formControlName="name" type="text" />
+      <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched" class="error-message">
+        Name is required.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" type="email" />
+      <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="error-message">
+        Enter a valid email.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="contactNumber">Contact Number:</label>
+      <input id="contactNumber" formControlName="contactNumber" type="text" />
+      <div *ngIf="userForm.get('contactNumber')?.invalid && userForm.get('contactNumber')?.touched" class="error-message">
+        Contact Number is required.
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Update User</button>
+      <button type="button" (click)="resetForm()" class="btn btn-secondary">Cancel</button>
+    </div>
+  </form>
+
+  <!-- Table for displaying user list -->
+  <div *ngIf="userList.length > 0" class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Contact Number</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of userList">
+          <td>{{ user.userID }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.contactNumber }}</td>
+          <td>
+            <button (click)="editUser(user)" class="btn btn-primary">Edit</button>
+            <button (click)="deleteUser(user.userID!)" class="btn btn-danger m-2">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Back button -->
+  <button (click)="goBack()" class="btn btn-secondary">Back</button>
+
+  <!-- Success and error messages -->
+  <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+</div>

@@ -1,0 +1,154 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h2 class="mb-0">Update Package</h2>
+    </div>
+   
+    <div class="card-body">
+      <!-- Error Message -->
+      <div *ngIf="error" class="alert alert-danger">
+        {{ error }}
+      </div>
+ 
+      <!-- Loading Spinner -->
+      <div *ngIf="loading" class="text-center my-4">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+ 
+      <!-- Package Form -->
+      <form [formGroup]="updateForm" (ngSubmit)="onSubmit()" *ngIf="!loading">
+        <!-- Title -->
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input
+            type="text"
+            id="title"
+            formControlName="title"
+            class="form-control"
+            [ngClass]="{'is-invalid': updateForm.get('title')?.invalid && updateForm.get('title')?.touched}"
+          >
+          <div class="invalid-feedback" *ngIf="updateForm.get('title')?.errors?.['required']">
+            Title is required
+          </div>
+          <div class="invalid-feedback" *ngIf="updateForm.get('title')?.errors?.['minlength']">
+            Title must be at least 3 characters long
+          </div>
+        </div>
+ 
+        <!-- Duration -->
+        <div class="mb-3">
+          <label for="duration" class="form-label">Duration</label>
+          <input
+            type="text"
+            id="duration"
+            formControlName="duration"
+            class="form-control"
+            [ngClass]="{'is-invalid': updateForm.get('duration')?.invalid && updateForm.get('duration')?.touched}"
+          >
+          <div class="invalid-feedback" *ngIf="updateForm.get('duration')?.invalid">
+            Duration is required
+          </div>
+        </div>
+ 
+        <!-- Description -->
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            id="description"
+            formControlName="description"
+            class="form-control"
+            rows="3"
+            [ngClass]="{'is-invalid': updateForm.get('description')?.invalid && updateForm.get('description')?.touched}"
+          ></textarea>
+          <div class="invalid-feedback" *ngIf="updateForm.get('description')?.invalid">
+            Description is required
+          </div>
+        </div>
+ 
+        <!-- Price -->
+        <div class="mb-3">
+          <label for="price" class="form-label">Price</label>
+          <input
+            type="number"
+            id="price"
+            formControlName="price"
+            class="form-control"
+            [ngClass]="{'is-invalid': updateForm.get('price')?.invalid && updateForm.get('price')?.touched}"
+          >
+          <div class="invalid-feedback" *ngIf="updateForm.get('price')?.errors?.['required']">
+            Price is required
+          </div>
+          <div class="invalid-feedback" *ngIf="updateForm.get('price')?.errors?.['min']">
+            Price must be greater than 0
+          </div>
+        </div>
+ 
+        <!-- Included Services -->
+        <div class="mb-3">
+          <label for="includedServices" class="form-label">Included Services</label>
+          <input
+            type="text"
+            id="includedServices"
+            formControlName="includedServices"
+            class="form-control"
+          >
+        </div>
+ 
+        <!-- Category -->
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <input
+            type="text"
+            id="category"
+            formControlName="category"
+            class="form-control"
+          >
+        </div>
+ 
+        <!-- Travel Agent -->
+        <div class="mb-3">
+          <label for="travelAgent" class="form-label">Travel Agent</label>
+          <input
+            type="text"
+            id="travelAgent"
+            formControlName="travelAgent"
+            class="form-control"
+          >
+        </div>
+ 
+        <!-- Image URL -->
+        <div class="mb-3">
+          <label for="image" class="form-label">Image URL</label>
+          <input
+            type="text"
+            id="image"
+            formControlName="image"
+            class="form-control"
+            [ngClass]="{'is-invalid': updateForm.get('image')?.invalid && updateForm.get('image')?.touched}"
+          >
+          <div class="invalid-feedback" *ngIf="updateForm.get('image')?.invalid">
+            Image URL is required
+          </div>
+        </div>
+ 
+        <!-- Action Buttons -->
+        <div class="d-flex gap-2">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="updateForm.invalid || loading"
+          >
+            Update Package
+          </button>
+         
+          <div>
+            <button (click)="goBack()" class="btn btn-danger m-0">Back</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+ 

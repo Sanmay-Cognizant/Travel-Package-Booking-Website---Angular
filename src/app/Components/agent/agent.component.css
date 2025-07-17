@@ -1,0 +1,153 @@
+/* Container */
+.agent-packages-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 16px;
+}
+ 
+/* Header Section */
+.header-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+ 
+.section-title {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+ 
+.section-subtitle {
+  font-size: 1rem;
+  color: #7f8c8d;
+}
+ 
+/* Loading State */
+.loading {
+  text-align: center;
+  font-size: 1rem;
+  color: #7f8c8d;
+  padding: 2rem;
+}
+ 
+/* Grid Layout */
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+ 
+/* Package Card */
+.package-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+ 
+.package-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+ 
+/* Package Image */
+.package-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+ 
+/* Package Information */
+.package-info {
+  margin-bottom: 1rem;
+}
+ 
+.package-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+ 
+.package-duration,
+.package-description,
+.package-price,
+.package-includedServices,
+.package-category,
+.package-agent {
+  font-size: 1rem;
+  color: #34495e;
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+ 
+/* Package Footer */
+.package-footer {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+ 
+/* Buttons */
+button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+ 
+.btn-primary {
+  background-color: #3498db;
+  color: white;
+}
+ 
+.btn-primary:hover {
+  background-color: #2980b9;
+}
+ 
+.btn-danger {
+  background-color: #e74c3c;
+  color: white;
+}
+ 
+.btn-danger:hover {
+  background-color: #c0392b;
+}
+ 
+/* No Packages Message */
+.no-packages {
+  text-align: center;
+  font-size: 1rem;
+  color: #7f8c8d;
+  padding: 2rem;
+}
+ 
+/* Responsive Design */
+@media (max-width: 768px) {
+  .agent-packages-container {
+    padding: 1rem;
+  }
+ 
+  .packages-grid {
+    grid-template-columns: 1fr;
+  }
+ 
+  .package-footer {
+    flex-direction: column;
+  }
+ 
+  button {
+    width: 100%;
+  }
+}
+ 

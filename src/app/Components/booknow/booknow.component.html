@@ -1,0 +1,58 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-7 col-lg-6">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-gradient-primary text-white rounded-top-4 text-center py-4">
+          <h2 class="mb-0 fw-bold">Book Your Dream Package</h2>
+        </div>
+        <div class="card-body p-4">
+          <form [formGroup]= "bookingForm" (ngSubmit)="onSubmit()">
+            <!-- Start Date Input -->
+            <div class="mb-4">
+              <label for="startDate" class="form-label fw-semibold">Start Date</label>
+              <input type="date" 
+                     class="form-control form-control-lg shadow-sm"
+                     id="startDate" 
+                     formControlName="startDate"
+                     (change)="updateEndDate()"
+                     [min]="minDate">
+            </div>
+
+            <!-- Duration Display -->
+            <div class="mb-4">
+              <label for="duration" class="form-label fw-semibold">Duration</label>
+              <input type="text" 
+                     class="form-control form-control-lg shadow-sm"
+                     id="duration" 
+                     [value]="selectedPackage?.duration + ' days'" 
+                     readonly>
+            </div>
+
+            <!-- Insurance Checkbox -->
+            <div class="mb-4 form-check">
+              <input type="checkbox"
+                     class="form-check-input"
+                     id="includeInsurance"
+                     formControlName="includeInsurance">
+              <label class="form-check-label fw-semibold" for="includeInsurance">
+                <span class="text-primary">Add Insurance for this booking</span>
+              </label>
+            </div>
+
+            <!-- Confirm Booking Button -->
+            <button type="submit" 
+                    class="btn btn-gradient-primary btn-lg w-100 shadow"
+                    [disabled]="!bookingForm.valid">
+              Confirm Booking
+            </button>
+          </form>
+        </div>
+      </div>
+      <button type="button" 
+              class="btn btn-outline-primary mt-3"
+              (click)="goBack()">
+        Back to Packages
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="container bookings-container">
+  <h2>My Bookings</h2>
+  <div *ngIf="bookings.length > 0; else noBookings" class="row">
+    <div *ngFor="let booking of bookings" class="col-md-6">
+      <div class="booking-card">     
+        <p>Booking ID: {{booking.bookingID}}</p>
+        <p>User ID: {{booking.userID}}</p>
+        <p>Package ID: {{booking.packageID}}</p>
+        <p>Start Date: {{booking.startDate | date: 'yyyy-MM-dd'}}</p>
+        <p>End Date: {{booking.endDate | date: 'yyyy-MM-dd'}}</p>
+        <p>Status: {{booking.status}}</p>
+        <div *ngIf="booking.status === 'Confirmed' && isAtLeastSevenDaysAway(booking.startDate)">
+          <button (click)="CancelBooking(booking.bookingID)" class="btn btn-danger">Cancel Booking</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #noBookings>
+    <p>You have no bookings at the moment.</p>      
+  </ng-template>
+
+  <button (click)="goBack()" class="btn btn-secondary">Back</button>
+</div>

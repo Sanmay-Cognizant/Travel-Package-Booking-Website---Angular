@@ -1,0 +1,80 @@
+<div class="agent-packages-container">
+  <!-- Toggle Button for Filtering Options -->
+  <button (click)="toggleSidebar()" class="toggle-filter-btn">
+    {{ sidebarOpen ? 'Close Filters' : 'Open Filters' }}
+  </button>
+
+  <!-- Sidebar for Filtering -->
+  <div *ngIf="sidebarOpen" class="sidebar">
+    <h3>Filter Packages</h3>
+    <form (ngSubmit)="applyFilters()">
+      <!-- <div class="form-group">
+        <label for="id">ID</label>
+        <input type="text" id="id" [(ngModel)]="filters.id" name="id" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="travelAgent">Travel Agent</label>
+        <input type="text" id="travelAgent" [(ngModel)]="filters.travelAgent" name="travelAgent" class="form-control">
+      </div> -->
+      <div class="form-group">
+        <label for="Duration">Duration</label>
+        <input type="number" id="Duration" [(ngModel)]="filters.Duration" name="Duration" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" [(ngModel)]="filters.title" name="title" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" id="price" [(ngModel)]="filters.price" name="price" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="services">Included Services</label>
+        <input type="text" id="services" [(ngModel)]="filters.services" name="services" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <input type="text" id="category" [(ngModel)]="filters.category" name="category" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Apply Filters</button>
+    </form>
+  </div>
+  <button class="back" (click)="goBack()">Back</button>
+
+  <!-- Packages List -->
+  <div class="packages-grid">
+    <div class="package-card" *ngFor="let package of filteredPackages">
+      <!-- Package Image -->
+      <div class="package-image">
+        <img [src]="package.image" alt="{{ package.title }}" class="package-image">
+      </div>
+ 
+      <!-- Package Info -->
+      <div class="package-info">
+        <h2 class="package-title">{{ package.title }}</h2>
+        <p class="package-duration"><strong>Duration:</strong> {{ package.duration }} days</p>
+        <p class="package-price"><strong>Price:</strong> Rs.{{ package.price }}</p>
+ 
+        <!-- Detailed Information (conditionally visible) -->
+        <div *ngIf="selectedPackage === package">
+          <p class="package-description"><strong>Description:</strong> {{ package.description }}</p>
+          <p class="package-services"><strong>Included Services:</strong> {{ package.includedServices }}</p>
+          <p class="package-category"><strong>category:</strong> {{ package.category }}</p>
+          <p class="package-travelagent"><strong>Travel Agent:</strong> {{ package.travelagent }}</p>
+        </div>
+      </div>
+      <!-- Package Footer -->
+      <div class="package-footer">
+        <button class="view-more-btn" (click)="toggleDetails(package)">
+          {{ selectedPackage === package ? 'View Less' : 'View More' }}
+        </button>
+        <button class="book-now-btn" (click)="bookNow(package)">Book Now</button>
+        <!-- Toggle Button for Filtering Options -->
+        <button class="btn btn-secondary" (click)="navigateToReviews(package.packageID)">Review</button>
+ 
+      </div>
+    </div>
+
+  </div>
+</div>
+ 

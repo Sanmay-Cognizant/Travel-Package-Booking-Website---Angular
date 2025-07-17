@@ -1,0 +1,66 @@
+<div class="agent-packages-container"*ngIf="userRole === 'Travel Agent' || userRole === 'Admin'; else notAgent">
+  <!-- Header Section -->
+  <div class="header-section">
+    <h1 class="section-title">Available Packages</h1>
+    <p class="section-subtitle">Explore our exclusive travel packages</p>
+    <button class="btn btn-primary" (click)="navigateToAdd()">Add Package</button>
+  </div>
+ 
+  <!-- Loading Indicator -->
+  <div *ngIf="packages.length === 0" class="loading">
+    <p>Loading packages, please wait...</p>
+  </div>
+ 
+  <!-- Packages List -->
+  <div *ngIf="packages.length > 0; else noPackages" class="packages-grid">
+    <div class="package-card" *ngFor="let package of packages">
+      <!-- Package Image -->
+      <div class="package-image">
+        <img [src]="package.image" [alt]="package.title" (error)="onImageError($event)" />
+      </div>
+ 
+      <!-- Package Info -->
+      <div class="package-info">
+        <h1 class="package-title">{{ package.title }}</h1>
+ 
+        <p class="package-packageId"><strong>Package ID:</strong> {{ package.packageID }}</p>
+        <p class="package-duration"><strong>Duration:</strong> {{ package.duration }}</p>
+       
+        <p class="package-description">
+          {{ package.description | slice: 0:100 }}
+          {{ package.description.length > 100 ? '...' : '' }}
+        </p>
+        <p class="package-price"><strong>Price:</strong> ₹{{ package.price.toLocaleString('en-IN') }}</p>
+        <p class="package-includedServices"><strong>Included Services:</strong> {{ package.includedServices }}</p>
+        <p class="package-category"><strong>Category:</strong> {{ package.category }}</p>
+        <p class="package-agent"><strong>Travel Agent:</strong> {{ package.travelagent }}</p>
+      </div>
+ 
+      <!-- Package Footer - Single instance of buttons -->
+      <div class="package-footer">
+        <div *ngIf="package.travelagent ===userId || userRole=='Admin';else review" class="package-footer">
+        <button class="btn btn-primary" (click)="navigateToUpdate(package.packageID)">Update</button>
+        <button class="btn btn-danger" (click)="navigateToDelete(package.packageID)">Delete</button>
+        <button class="btn btn-secondary" (click)="navigateToReviews(package.packageID)">Review</button>
+        </div>
+        <ng-template #review>
+        <button class="btn btn-secondary" (click)="navigateToReviews(package.packageID)">Review</button>
+      </ng-template>
+      </div>
+    </div>
+  </div>
+ <button (click)="goBack()">Back</button>
+  <!-- No Packages Fallback -->
+  <ng-template #noPackages>
+    <div class="no-packages">
+      <p>No packages available at the moment.</p>
+    </div>
+  </ng-template>
+</div>
+<ng-template #notAgent>
+  <div class="not-agent">
+    <h2>You are not a Authorized to access this page</h2>
+    <p>Please contact your administrator for more information.</p>
+  </div>
+</ng-template>
+ 

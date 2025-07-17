@@ -1,0 +1,167 @@
+/* Container Styling */
+.add-package-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+ 
+/* Heading */
+h2 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+ 
+/* Form Group */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+ 
+/* Labels */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #34495e;
+  font-weight: 500;
+  font-size: 1rem;
+}
+ 
+/* Form Controls */
+.form-control {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+ 
+.form-control:focus {
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+  outline: none;
+}
+ 
+/* Textarea */
+textarea.form-control {
+  min-height: 120px;
+  resize: vertical;
+}
+ 
+/* Button Container */
+form > div:last-child {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: flex-start;
+}
+ 
+/* Buttons */
+.btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+ 
+.btn-primary {
+  background-color: #4299e1;
+  color: white;
+  min-width: 150px;
+}
+ 
+.btn-primary:hover:not(:disabled) {
+  background-color: #3182ce;
+  transform: translateY(-2px);
+}
+ 
+.btn-primary:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+ 
+.btn-danger {
+  background-color: #e53e3e;
+  color: white;
+  min-width: 100px;
+}
+ 
+.btn-danger:hover {
+  background-color: #c53030;
+  transform: translateY(-2px);
+}
+ 
+/* Validation Styles */
+.form-control.ng-invalid.ng-touched {
+  border-color: #e53e3e;
+}
+ 
+/* Placeholder Styling */
+::placeholder {
+  color: #a0aec0;
+  opacity: 0.7;
+}
+ 
+/* Responsive Design */
+@media (max-width: 768px) {
+  .add-package-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+ 
+  h2 {
+    font-size: 1.8rem;
+  }
+ 
+  form > div:last-child {
+    flex-direction: column;
+  }
+ 
+  .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+ 
+/* Animation for Form Controls */
+.form-control {
+  transform-origin: left;
+  animation: slideIn 0.3s ease-out;
+}
+ 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ 
+/* Error States */
+.form-control.ng-invalid.ng-touched {
+  border-color: #e53e3e;
+  background-color: #fff5f5;
+}
+ 
+.error-message {
+  color: #e53e3e;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+ 
+/* Success States */
+.form-control.ng-valid.ng-touched {
+  border-color: #48bb78;
+}
+ 

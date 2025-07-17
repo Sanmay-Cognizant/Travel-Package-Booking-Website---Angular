@@ -1,0 +1,92 @@
+<div class="assistance-container">
+    <!-- Messages Section -->
+    <div *ngIf="successMessage" class="alert alert-success">
+        {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+    </div>
+ 
+    <!-- Form Section -->
+    <div *ngIf="showForm" class="form-container">
+        <h2>{{ isEditing ? 'Edit Assistance Request' : 'New Assistance Request' }}</h2>
+        <form (ngSubmit)="onSubmit()" #assistanceForm="ngForm">
+            <div class="form-group">
+                <label for="issueDescription">Describe Your Issue</label>
+                <textarea
+                    id="issueDescription"
+                    name="issueDescription"
+                    [(ngModel)]="assistanceData.issueDescription"
+                    required
+                    class="form-control"
+                    rows="4"
+                    placeholder="Please describe your issue here...">
+                </textarea>
+            </div>
+ 
+            <!-- Status Dropdown -->
+            <div class="form-group" *ngIf="isEditing">
+                <label for="status">Status</label>
+                <select
+                    id="status"
+                    name="status"
+                    [(ngModel)]="assistanceData.status"
+                    required
+                    class="form-control">
+                    <option *ngFor="let option of statusOptions" [value]="option">
+                        {{option}}
+                    </option>
+                </select>
+            </div>
+ 
+            <div class="form-actions">
+                <button type="submit"
+                        [disabled]="!assistanceForm.valid"
+                        class="btn btn-primary">
+                    {{ isEditing ? 'Update' : 'Submit' }}
+                </button>
+                <button type="button"
+                        (click)="resetForm()"
+                        class="btn btn-secondary">
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+ 
+    <!-- Table Section -->
+    <div class="assistance-list" *ngIf="assistanceList.length > 0">
+        <h3>Assistance Requests</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let request of assistanceList">
+                    <td>{{request.issueDescription}}</td>
+                    <td>
+                        <span [ngClass]="getStatusClass(request.status)">
+                            {{request.status}}
+                        </span>
+                    </td>
+                    <td class="action-buttons">
+                        <button class="btn btn-sm btn-primary" (click)="editRequest(request)">
+                            Edit
+                        </button>
+                        <button class="btn btn-sm btn-danger" (click)="deleteRequest(request.requestID!)">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button (click)="goBack()" class="btn btn-secondary">
+        Back    
+    </button>
+</div>
+ 
