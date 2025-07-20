@@ -1,170 +1,171 @@
 <div class="reviews-container">
-    <!-- Hero Section -->
-    <div class="hero-section">
-      <h1 class="main-title">Travel Reviews</h1>
-      <p class="subtitle">Share your travel experience with us</p>
-    </div>
-   
-    <!-- Average Rating Card -->
-    <div class="rating-overview-card">
-      <h3>Average Rating</h3>
-      <div class="stars-display">
-        @for (star of generateStars(averageRating); track star) {
-          <span class="star">{{ star }}</span>
-        }
-      </div>
-      <p class="rating-text">{{ averageRating.toFixed(1) }} out of 5</p>
-    </div>
-   
-    <!-- Add Review Button -->
-    <div class="action-section">
-      <button (click)="toggleReviewForm()" class="add-review-btn">
-        <i class="fas" [class.fa-times]="showReviewForm" [class.fa-plus]="!showReviewForm"></i>
-        {{ showReviewForm ? 'Cancel Review' : 'Write a Review' }}
-      </button>
-    </div>
-   
-    <!-- Review Form -->
-    @if (showReviewForm) {
-      <div class="review-form-card">
-        <h2>Write Your Review</h2>
-        <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
-          <!-- Overall Rating Stars -->
-          <div class="rating-group">
-            <label>Overall Experience</label>
-            <div class="stars-input">
-              @for (star of starsArray; track star) {
-                <span
-      (click)="setRating('overall', star)"
-      (mouseenter)="setHoverRating('overall', star)"
-      (mouseleave)="clearHoverRating('overall')"
-      [class.filled]="star <= (hoverStates['overall'] || reviewForm.get('rating')?.value || 0)"
-    class="star-btn">★</span>
-              }
-            </div>
-          </div>
-   
-          <!-- Comment Section -->
-          <div class="form-group">
-            <label>Your Review</label>
-            <textarea
-              formControlName="comment"
-              placeholder="Tell us about your experience..."
-              class="review-textarea"></textarea>
-          </div>
-   
-          <!-- Specific Ratings -->
-          <div class="ratings-grid">
-            <!-- Food Rating -->
-            <div class="rating-item">
-              <label>Food Quality</label>
-              <div class="stars-input">
-                @for (star of starsArray; track star) {
-                  <span
-                    (click)="setRating('food', star)"
-                    [class.filled]="star <= (reviewForm.get('foodReview')?.value || 0)"
-                    class="star-btn small">★</span>
-                }
-              </div>
-            </div>
-   
-            <!-- Flight Rating -->
-            <div class="rating-item">
-              <label>Travel Service</label>
-              <div class="stars-input">
-                @for (star of starsArray; track star) {
-                  <span
-                    (click)="setRating('flight', star)"
-                    [class.filled]="star <= (reviewForm.get('flightReview')?.value || 0)"
-                    class="star-btn small">★</span>
-                }
-              </div>
-            </div>
-   
-            <!-- Hotel Rating -->
-            <div class="rating-item">
-              <label>Hotel Experience</label>
-              <div class="stars-input">
-                @for (star of starsArray; track star) {
-                  <span
-                    (click)="setRating('hotel', star)"
-                    [class.filled]="star <= (reviewForm.get('hotelReview')?.value || 0)"
-                    class="star-btn small">★</span>
-                }
-              </div>
-            </div>
-   
-            <!-- Travel Agent Rating -->
-            <div class="rating-item">
-              <label>Travel Agent Service</label>
-              <div class="stars-input">
-                @for (star of starsArray; track star) {
-                  <span
-                    (click)="setRating('travelAgent', star)"
-                    [class.filled]="star <= (reviewForm.get('travelAgentReview')?.value || 0)"
-                    class="star-btn small">★</span>
-                }
-              </div>
-            </div>
-          </div>
-   
-          <button type="submit" [disabled]="!reviewForm.valid" class="submit-btn">
-            Submit Review
-          </button>
-   
-        </form>
-      </div>
-    }
-   
-    <!-- Reviews Display -->
-    <div class="reviews-grid">
-      @for (review of reviews; track review.reviewID) {
-        <div class="review-card">
-          <div class="review-header">
-            <div class="stars-display">
-              @for (star of generateStars(review.rating); track star) {
-                <span class="star">{{ star }}</span>
-              }
-            </div>
-            <span class="review-date">{{ review.timeStamp | date:'mediumDate' }}</span>
-          </div>
-          <p class="review-text">{{ review.comment }}</p>
-          <div class="specific-ratings">
-            @if (review.foodReview) {
-              <span class="rating-tag">
-                <i class="fas fa-utensils"></i> Food Rating : {{ review.foodReview }}/5
-              </span>
-            }
-            @if (review.flightReview) {
-              <span class="rating-tag">
-                <i class="fas fa-utensils"></i> Travel Rating  : {{ review.flightReview }}/5
-              </span>
-            }
-            @if (review.hotelReview) {
-              <span class="rating-tag">
-                <i class="fas fa-utensils"></i> Hotel Rating  : {{ review.hotelReview }}/5
-              </span>
-            }
-            @if (review.travelAgentReview) {
-              <span class="rating-tag">
-                <i class="fas fa-user-tie"></i> Travel Agent : {{ review.travelAgentReview }}/5
-              </span>
-            }
-           
-          </div>
-          <div *ngIf="userRole=='Admin'">
-          <button
-            (click)="deleteReview(review.reviewID)"
-            class="delete-btn"
-            [disabled]="loading">
-            <i class="fas fa-trash-alt"></i>
-            {{ loading ? 'Deleting...' : 'Delete Review' }}
-          </button>
-          </div>
-        </div>
-      }
-    </div>
-   
-    <button (click)="goBack()" class="btn btn-danger m-0">Back</button>
+  <!-- Hero Section -->
+  <div class="hero-section">
+  <h1 class="main-title">Travel Reviews</h1>
+  <p class="subtitle">Share your travel experience with us</p>
   </div>
-   
+ 
+  <!-- Average Rating Card -->
+  <div class="rating-overview-card">
+  <h3>Average Rating</h3>
+  <div class="stars-display">
+  @for (star of generateStars(averageRating); track star) {
+  <span class="star">{{ star }}</span>
+  }
+  </div>
+  <p class="rating-text">{{ averageRating.toFixed(1) }} out of 5</p>
+  </div>
+ 
+  <!-- Add Review Button -->
+  <div class="action-section">
+  <button (click)="toggleReviewForm()" class="add-review-btn">
+  <i class="fas" [class.fa-times]="showReviewForm" [class.fa-plus]="!showReviewForm"></i>
+  {{ showReviewForm ? 'Cancel Review' : 'Write a Review' }}
+  </button>
+  </div>
+ 
+  <!-- Review Form -->
+  @if (showReviewForm) {
+  <div class="review-form-card">
+  <h2>Write Your Review</h2>
+  <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+  <!-- Overall Rating Stars -->
+  <div class="rating-group">
+  <label>Overall Experience</label>
+  <div class="stars-input">
+  @for (star of starsArray; track star) {
+  <span
+  (click)="setRating('overall', star)"
+  (mouseenter)="setHoverRating('overall', star)"
+  (mouseleave)="clearHoverRating('overall')"
+  [class.filled]="star <= (hoverStates['overall'] || reviewForm.get('rating')?.value || 0)"
+  class="star-btn">★</span>
+  }
+  </div>
+  </div>
+ 
+  <!-- Comment Section -->
+  <div class="form-group">
+  <label>Your Review</label>
+  <textarea
+  formControlName="comment"
+  placeholder="Tell us about your experience..."
+  class="review-textarea"></textarea>
+  </div>
+ 
+  <!-- Specific Ratings -->
+  <div class="ratings-grid">
+  <!-- Food Rating -->
+  <div class="rating-item">
+  <label>Food Quality</label>
+  <div class="stars-input">
+  @for (star of starsArray; track star) {
+  <span
+  (click)="setRating('food', star)"
+  [class.filled]="star <= (reviewForm.get('foodReview')?.value || 0)"
+  class="star-btn small">★</span>
+  }
+  </div>
+  </div>
+ 
+  <!-- Flight Rating -->
+  <div class="rating-item">
+  <label>Travel Service</label>
+  <div class="stars-input">
+  @for (star of starsArray; track star) {
+  <span
+  (click)="setRating('flight', star)"
+  [class.filled]="star <= (reviewForm.get('flightReview')?.value || 0)"
+  class="star-btn small">★</span>
+  }
+  </div>
+  </div>
+ 
+  <!-- Hotel Rating -->
+  <div class="rating-item">
+  <label>Hotel Experience</label>
+  <div class="stars-input">
+  @for (star of starsArray; track star) {
+  <span
+  (click)="setRating('hotel', star)"
+  [class.filled]="star <= (reviewForm.get('hotelReview')?.value || 0)"
+  class="star-btn small">★</span>
+  }
+  </div>
+  </div>
+ 
+  <!-- Travel Agent Rating -->
+  <div class="rating-item">
+  <label>Travel Agent Service</label>
+  <div class="stars-input">
+  @for (star of starsArray; track star) {
+  <span
+  (click)="setRating('travelAgent', star)"
+  [class.filled]="star <= (reviewForm.get('travelAgentReview')?.value || 0)"
+  class="star-btn small">★</span>
+  }
+  </div>
+  </div>
+  </div>
+ 
+  <button type="submit" [disabled]="!reviewForm.valid" class="submit-btn">
+  Submit Review
+  </button>
+  </form>
+  </div>
+  }
+ 
+  <!-- Reviews Display -->
+  <div class="reviews-grid">
+  @for (review of reviews; track review.reviewID) {
+  <div class="review-card">
+  <div class="review-header">
+  <div class="stars-display">
+  @for (star of generateStars(review.rating); track star) {
+  <span class="star">{{ star }}</span>
+  }
+  </div>
+  <span class="review-date">{{ review.timeStamp | date:'mediumDate' }}</span>
+  </div>
+  <p class="review-text">{{ review.comment }}</p>
+  <div class="specific-ratings">
+  @if (review.foodReview) {
+  <span class="rating-tag">
+  <i class="fas fa-utensils"></i> Food Rating: {{ review.foodReview }}/5
+  </span>
+  }
+  @if (review.flightReview) {
+  <span class="rating-tag">
+  <i class="fas fa-plane"></i> Travel Rating: {{ review.flightReview }}/5
+  </span>
+  }
+  @if (review.hotelReview) {
+  <span class="rating-tag">
+  <i class="fas fa-bed"></i> Hotel Rating: {{ review.hotelReview }}/5
+  </span>
+  }
+  @if (review.travelAgentReview) {
+  <span class="rating-tag">
+  <i class="fas fa-user-tie"></i> Travel Agent: {{ review.travelAgentReview }}/5
+  </span>
+  }
+  </div>
+  <div *ngIf="userRole=='Admin'">
+  <button
+  (click)="deleteReview(review.reviewID)"
+  class="delete-btn"
+  [disabled]="loading">
+  <i class="fas fa-trash-alt"></i>
+  {{ loading ? 'Deleting...' : 'Delete Review' }}
+  </button>
+  </div>
+  </div>
+  }
+  </div>
+ 
+  <button (click)="goBack()" class="back-btn">
+  <i class="fas fa-arrow-left"></i> Back
+  </button>
+ </div>
+ 
+ 
