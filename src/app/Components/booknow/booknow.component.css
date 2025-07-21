@@ -1,102 +1,92 @@
-body {
-  background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%);
-}
- 
-.form-container {
-  padding: 20px;
-  max-width: 600px;
-  margin: 0 auto;
-}
- 
-.date-section {
-  margin-bottom: 20px;
-}
- 
-.form-group {
-  margin-bottom: 15px;
-}
- 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
- 
-.form-label {
-  font-size: 1.1rem;
-}
- 
-input[type="date"] {
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  width: 100%;
-}
- 
-.form-control-lg {
-  font-size: 1.1rem;
-  border-radius: 0.75rem;
-}
- 
-.form-check-label {
-  font-size: 1rem;
-}
- 
-.button-group {
+.booknow-background {
+  width: 100vw;
+  height: 100vh;
+  background: url('/Traveller.jpg') no-repeat center center;
+  background-size: cover;
   display: flex;
-  gap: 10px;
   justify-content: flex-end;
-}
- 
-.btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
- 
-.btn-insurance {
-  background-color: #6c757d;
-  color: white;
-}
- 
-.btn-submit {
-  background-color: #007bff;
-  color: #ffffff;
-}
- 
-.btn-gradient-primary {
-  background: linear-gradient(90deg, #4f8cff 0%, #6a82fb 100%);
-  color: #fff;
-  border: none;
-  transition: box-shadow 0.2s, transform 0.2s;
-}
-.btn-gradient-primary:hover, .btn-gradient-primary:focus {
-  background: linear-gradient(90deg, #3a6ee8 0%, #4f8cff 100%);
-  color: #fff;
-  box-shadow: 0 6px 24px rgba(79, 140, 255, 0.2);
-  transform: translateY(-2px) scale(1.03);
-}
- 
-.card {
-  border-radius: 1.5rem;
+  align-items: center;
+  padding: 0 5%;
+  box-sizing: border-box;
   overflow: hidden;
 }
- 
-.bg-gradient-primary {
-  background: linear-gradient(90deg, #4f8cff 0%, #6a82fb 100%) !important;
+
+/* Card styling */
+
+.card {
+  width: 45%;
+  min-width: 320px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  height: auto;              /* Let height adjust naturally */
+  max-height: none;          /* Remove height restriction */
+  overflow: visible;         /* Disable internal scrolling */
 }
- 
-.shadow {
-  box-shadow: 0 4px 24px rgba(79, 140, 255, 0.08) !important;
+
+
+/* Header styling */
+.card-header {
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  color: white;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  text-align: center;
+  padding: 20px;
 }
- 
-.rounded-4 {
-  border-radius: 1.5rem !important;
+
+/* Form elements */
+input[type="date"],
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
 }
- 
-.rounded-top-4 {
-  border-top-left-radius: 1.5rem !important;
-  border-top-right-radius: 1.5rem !important;
+
+/* Buttons */
+.btn-gradient-primary {
+  background: linear-gradient(90deg, #43cea2, #185a9d);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
- 
+
+.btn-gradient-primary:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 24px rgba(67, 206, 162, 0.3);
+}
+
+.btn-outline-primary {
+  margin-top: 20px;
+  border: 2px solid #185a9d;
+  color: #185a9d;
+  background-color: transparent;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-outline-primary:hover {
+  background-color: #185a9d;
+  color: white;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .booknow-background {
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .card {
+    width: 90%;
+    max-height: none;
+  }
+}
