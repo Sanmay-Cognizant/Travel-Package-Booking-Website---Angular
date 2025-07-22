@@ -1,51 +1,68 @@
-<!-- <div class="profile-container">
-    <button (click)="goBack()">Back</button>
-    <h2>Profile</h2>
-    <div class="profile-details">
-      <p><strong>Username:</strong> {{ user.username }}</p>
-      <p><strong>Email:</strong> {{ user.email }}</p>
-      <p><strong>Phone:</strong> {{ user.phone }}</p>
-    </div>
-    <div class="profile-actions">
-      <button (click)="editProfile()">Edit Profile</button>
-      </div>
-    <button (click)="logout()">Log Out</button>
-
-  </div> -->
-
-  <div class="user-info-section" id="userInfoSection">
-    <div class="container">
-      <button (click)="goBack()">Back</button>
-        <div class="row">
-            <div class="col-12">
-                <h1 class="user-info-heading">User Information</h1>
+<div class="profile-container">
+    <div class="profile-wrapper">
+        <!-- Header Section -->
+        <div class="profile-header">
+            <button class="back-button" (click)="goBack()">
+                ← Back
+            </button>
+            
+            <div class="profile-image-container">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.Ol8gRIQH6hOXPBhtnq2cfQHaHa?rs=1&pid=ImgDetMain" 
+                     class="profile-image" 
+                     alt="Profile Picture">
             </div>
-            <div class="col-12 col-md-10 col-lg-10">
-                <div class="user-info-card shadow p-3 mb-3">
-                    <img src="https://tse2.mm.bing.net/th/id/OIP.Ol8gRIQH6hOXPBhtnq2cfQHaHa?rs=1&pid=ImgDetMain" class="user-profile-image" alt="User Profile Picture">
-                    <div class="user-info-details">
-                        <div class="user-info-item">
-                            <h2 class="user-info-key">Name</h2>
-                            <p class="user-info-value">{{ user.username }}</p>
-                        </div>
-                        <div class="user-info-item">
-                            <h2 class="user-info-key">Mobile Number</h2>
-                            <p class="user-info-value">{{ user.phone }}</p>
-                        </div>
-                        <div class="user-info-item">
-                            <h2 class="user-info-key">Email ID</h2>
-                            <p class="user-info-value">{{ user.email }}</p>
-                        </div>
-                        <div class="profile-actions">
-                          <button (click)="editProfile()">Edit Profile</button>
-                          </div>
-                        <button (click)="logout()">Log Out</button>
+            
+            <h1 class="profile-title">{{ user.username }}</h1>
+            <p class="profile-subtitle">User Profile</p>
+        </div>
+
+        <!-- Content Section -->
+        <div class="profile-content">
+            <div class="info-grid">
+                <!-- Name Info -->
+                <div class="info-item">
+                    <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                    </svg>
+                    <div class="info-details">
+                        <p class="info-label">Full Name</p>
+                        <p class="info-value">{{ user.username }}</p>
                     </div>
                 </div>
+
+                <!-- Email Info -->
+                <div class="info-item">
+                    <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                    </svg>
+                    <div class="info-details">
+                        <p class="info-label">Email Address</p>
+                        <p class="info-value">{{ user.email }}</p>
+                    </div>
+                </div>
+
+                <!-- Phone Info -->
+                <div class="info-item">
+                    <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                    </svg>
+                    <div class="info-details">
+                        <p class="info-label">Phone Number</p>
+                        <p class="info-value">{{ user.phone }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn btn-primary" (click)="editProfile()">
+                    Edit Profile
+                </button>
+                <button class="btn btn-outline" (click)="logout()">
+                    Log Out
+                </button>
             </div>
         </div>
     </div>
 </div>
- 
- 
-  
