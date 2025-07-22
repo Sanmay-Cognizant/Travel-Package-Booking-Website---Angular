@@ -1,4 +1,12 @@
 <div class="hero-container">
+  <!-- Background slideshow -->
+  <div class="background-slideshow">
+    <div class="slide active"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
+  </div>
 
   <div class="navbar">
     <div class="brand">
@@ -25,9 +33,17 @@
     </div>
 
     <div class="explore-button-div">
-      <p style="margin-top: 10px; "> Hello {{name}} </p>
+      <p class="welcome-text">Hello {{name}}!</p>
       <button (click)="explore()" class="explore-button">Explore Now</button>
     </div>
   </div>
 
+  <!-- Slideshow indicators -->
+  <div class="slideshow-indicators">
+    <div class="indicator active" (click)="setSlide(0)"></div>
+    <div class="indicator" (click)="setSlide(1)"></div>
+    <div class="indicator" (click)="setSlide(2)"></div>
+    <div class="indicator" (click)="setSlide(3)"></div>
+    <div class="indicator" (click)="setSlide(4)"></div>
+  </div>
 </div>
