@@ -1,37 +1,112 @@
 <div class="edit-profile-container">
-    <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input id="name" formControlName="name" type="text" />
-        <div *ngIf="editProfileForm.get('name')?.invalid && editProfileForm.get('name')?.touched">
-          Name is required
+    <div class="form-wrapper">
+        <!-- Header Section -->
+        <div class="form-header">
+            <h1 class="form-title">Edit Profile</h1>
+            <p class="form-subtitle">Update your personal information</p>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="contactNumber">Contact Number</label>
-        <input id="contactNumber" formControlName="contactNumber" type="text" />
-        <div *ngIf="editProfileForm.get('contactNumber')?.invalid && editProfileForm.get('contactNumber')?.touched">
-          Contact number is required
+
+        <!-- Form Content -->
+        <div class="form-content">
+            <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+                
+                <!-- Name Field -->
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <div class="input-container">
+                        <input 
+                            id="name" 
+                            formControlName="name" 
+                            type="text" 
+                            placeholder="Enter your full name"
+                            autocomplete="name" />
+                        <svg class="input-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <div *ngIf="editProfileForm.get('name')?.invalid && editProfileForm.get('name')?.touched">
+                        <svg class="error-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                        </svg>
+                        Name is required
+                    </div>
+                </div>
+
+                <!-- Contact Number Field -->
+                <div class="form-group">
+                    <label for="contactNumber">Phone Number</label>
+                    <div class="input-container">
+                        <input 
+                            id="contactNumber" 
+                            formControlName="contactNumber" 
+                            type="tel" 
+                            placeholder="Enter your phone number"
+                            autocomplete="tel" />
+                        <svg class="input-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                        </svg>
+                    </div>
+                    <div *ngIf="editProfileForm.get('contactNumber')?.invalid && editProfileForm.get('contactNumber')?.touched">
+                        <svg class="error-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                        </svg>
+                        Contact number is required
+                    </div>
+                </div>
+
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-container">
+                        <input 
+                            id="email" 
+                            formControlName="email" 
+                            type="email" 
+                            placeholder="Enter your email address"
+                            autocomplete="email" />
+                        <svg class="input-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                        </svg>
+                    </div>
+                    <div *ngIf="editProfileForm.get('email')?.invalid && editProfileForm.get('email')?.touched">
+                        <svg class="error-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                        </svg>
+                        Email is required
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-container">
+                        <input 
+                            id="password" 
+                            formControlName="password" 
+                            type="password" 
+                            placeholder="Enter your password"
+                            autocomplete="current-password" />
+                        <svg class="input-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <div *ngIf="editProfileForm.get('password')?.invalid && editProfileForm.get('password')?.touched">
+                        <svg class="error-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                        </svg>
+                        Password is required
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button class="submit" type="submit">Update Profile</button>
+            </form>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" formControlName="email" type="email" />
-        <div *ngIf="editProfileForm.get('email')?.invalid && editProfileForm.get('email')?.touched">
-          Email is required
+
+        <!-- Footer Section -->
+        <div class="form-footer">
+            <button (click)="goBack()" class="back-btn">Back</button>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input id="password" formControlName="password" type="password" />
-        <div *ngIf="editProfileForm.get('password')?.invalid && editProfileForm.get('password')?.touched">
-          Password is required
-        </div>
-      </div>
-      <button class="submit" type="submit">Update Profile</button>
-    </form>
-    <div>
-    <button (click)="goBack()" class="btn btn-dark m-2">Back</button>
-    <div>
-  </div>
-  
+    </div>
+</div>
