@@ -1,7 +1,9 @@
 <div class="booknow-background">
   <div class="card shadow-lg border-0 rounded-4">
     <div class="card-header bg-gradient-primary text-white rounded-top-4 text-center py-4">
-      <h2 class="mb-0 fw-bold">Book Your Dream Package</h2>
+      <h2 class="mb-0 fw-bold">
+        Book: {{ selectedPackage?.title || 'Your Dream Package' }}
+      </h2>        
     </div>
     <div class="card-body p-4">
       <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
