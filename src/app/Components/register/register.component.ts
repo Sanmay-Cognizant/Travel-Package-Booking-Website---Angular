@@ -11,8 +11,11 @@ import { AuthserviceService } from '../../Services/authservice.service';
   styleUrl: './register.component.css'
 })
 
+
 export class RegisterComponent {
    registerForm!: FormGroup;
+   errorMessage: string = '';
+    successMessage: string = '';
     constructor(private fb: FormBuilder, private router: Router,private authS: AuthserviceService) {
   
    
@@ -25,31 +28,42 @@ export class RegisterComponent {
      
     }
    
+    onSubmit(): void {
+      this.errorMessage = '';
+      this.successMessage = '';
+    
+      if (this.registerForm.valid) {
+        const user = {
+          name: this.registerForm.get('name')?.value,
+          contactNumber: this.registerForm.get('contactNumber')?.value,
+          email: this.registerForm.get('email')?.value,
+          password: this.registerForm.get('password')?.value
+        };
+    
+        console.log('Form Submitted!', user);
+    
+        this.authS.registerUser(user).subscribe({
+          next: (response: any) => {
+            console.log('Registration successful:', response);
+            this.successMessage = 'Registration successful. You can now log in.';
+            this.registerForm.reset();
+            this.router.navigate(['']);
 
-  onSubmit(): void {
-    if (this.registerForm.valid) {
-      const user = {
-        name: this.registerForm.get('name')?.value,
-        contactNumber: this.registerForm.get('contactNumber')?.value,
-        email: this.registerForm.get('email')?.value,
-        password: this.registerForm.get('password')?.value
-      };
-  
-      console.log('Form Submitted!', user);
-      this.authS.registerUser(user).subscribe({
-        next: (response: any) => {
-          alert('Registration Successful, now login');
-          this.router.navigate(['']);
-        },
-        error: (err: any) => {
-          console.error('Registration failed:', err);
-          alert('Registration failed. Please try again.');
-        }
-      });
-    } else {
-      alert('Please fill out the form correctly.');
+          },
+          error: (err: any) => {
+            console.error('Registration failed:', err);
+            if (err.status === 409 && err.error?.error) {
+              this.errorMessage = err.error.error; // backend message
+            } else {
+              this.errorMessage = 'Registration failed. Please try again.';
+            }
+          }
+        });
+      } else {
+        this.errorMessage = 'Please fill out the form correctly.';
+      }
     }
-  }  
+    
 
 
 }
