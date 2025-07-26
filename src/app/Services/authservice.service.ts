@@ -33,17 +33,11 @@ export class AuthserviceService {
    
   }
 
-  login(userData:user): Observable<any>  {
-    
-    //call the API
-    //In Post Supply 1. URL and 2. Param
-    return this.http.post(Constant.BASE_URI+Constant.LOGIN,userData).pipe(
-      catchError((error:any)=>{
-        console.error(error);
-        return of(error);
-      })
-    );
+  login(userData: user): Observable<any> {
+    return this.http.post(Constant.BASE_URI + Constant.LOGIN, userData);
   }
+
+  
   getToken(): string | null  {
     if (isPlatformBrowser(this.platformId)) {
       return localStorage.getItem('token');
