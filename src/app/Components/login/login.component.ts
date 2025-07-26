@@ -16,6 +16,7 @@ import { AuthserviceService } from '../../Services/authservice.service';
 
 export class LoginComponent {
    loginForm: FormGroup;
+   errorMessage: string = '';
   
    constructor(private fb: FormBuilder, private router: Router, private authS: AuthserviceService) {
    this.loginForm = this.fb.group({
@@ -62,7 +63,8 @@ export class LoginComponent {
           }
         },
         error: (error: any) => {
-          console.error(error);
+          console.error('Login failed:', error.error); // Logs "Invalid credentials."
+          this.errorMessage = error.error || 'Login failed. Please try again.';
         },
         complete: () => {
           console.log('Request completed');

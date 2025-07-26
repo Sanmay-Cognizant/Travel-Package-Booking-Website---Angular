@@ -18,9 +18,14 @@
         </div>
 
         <input type="password" placeholder="Password" formControlName="password" />
-        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
-          Password is required
-        </div>
+<div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
+  Password is required
+</div>
+
+<!-- Show backend error message -->
+<p class="error-p" *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</p>
 
         <button type="submit">Log In</button>
       </form>
