@@ -18,13 +18,21 @@ export class EditProfileComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private authS: AuthserviceService) {}
 
   ngOnInit(): void {
+    const name = localStorage.getItem('Name') || '';
+    const email = localStorage.getItem('Email') || '';
+    const contactNumber = localStorage.getItem('ContactNumber') || '';
+    const password = localStorage.getItem('Password') || ''; // Optional if stored
+    const role = localStorage.getItem('userRole') || 'Customer';
+  
     this.editProfileForm = this.fb.group({
-      name: ['', Validators.required],
-      contactNumber: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.minLength(6)]
+      name: [name, Validators.required],
+      contactNumber: [contactNumber, Validators.required],
+      email: [email, [Validators.required, Validators.email]],
+      password: [password, [Validators.required, Validators.minLength(6)]],
+      role: [role, Validators.required]
     });
   }
+  
 
   onSubmit(): void {
     if (this.editProfileForm.valid) {
@@ -34,8 +42,10 @@ export class EditProfileComponent implements OnInit {
           name: this.editProfileForm.get('name')?.value,
           contactNumber: this.editProfileForm.get('contactNumber')?.value,
           email: this.editProfileForm.get('email')?.value,
-          password: this.editProfileForm.get('password')?.value
+          password: this.editProfileForm.get('password')?.value,
+          role: this.editProfileForm.get('role')?.value // 💥 INCLUDE THIS
         };
+        
 
         console.log('Profile Updated!', updatedUser); // Log the request payload
         this.authS.updateUserProfile(updatedUser).subscribe({
