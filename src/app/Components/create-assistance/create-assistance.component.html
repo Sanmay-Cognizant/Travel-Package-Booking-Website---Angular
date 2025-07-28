@@ -1,59 +1,74 @@
 <div class="create-container">
-    <h2>Create New Assistance Request</h2>
+    <div class="header-section">
+        <div class="icon-wrapper">
+            <svg class="help-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+        </div>
+        <h2>Create New Assistance Request</h2>
+        <p class="subtitle">We're here to help! Describe your issue and we'll get back to you soon.</p>
+    </div>
  
     <div *ngIf="successMessage" class="alert alert-success">
+        <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <polyline points="20,6 9,17 4,12"></polyline>
+        </svg>
         {{ successMessage }}
     </div>
     <div *ngIf="errorMessage" class="alert alert-danger">
+        <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="15" y1="9" x2="9" y2="15"></line>
+            <line x1="9" y1="9" x2="15" y2="15"></line>
+        </svg>
         {{ errorMessage }}
     </div>
  
     <form (ngSubmit)="onSubmit()" #assistanceForm="ngForm" class="form-container">
-        <!-- <div class="form-group">
-            <label for="userID">User ID</label>
-            <input
-                type="number"
-                id="userID"
-                name="userID"
-                [(ngModel)]="assistanceData.userID"
-                required
-                class="form-control">
-        </div> -->
- 
         <div class="form-group">
-            <label for="issueDescription">Describe Your Issue</label>
-            <textarea
-                id="issueDescription"
-                name="issueDescription"
-                [(ngModel)]="assistanceData.issueDescription"
-                required
-                class="form-control"
-                rows="4">
-            </textarea>
+            <label for="issueDescription">
+                <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14,2 14,8 20,8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10,9 9,9 8,9"></polyline>
+                </svg>
+                Describe Your Issue
+            </label>
+            <div class="input-wrapper">
+                <textarea
+                    id="issueDescription"
+                    name="issueDescription"
+                    [(ngModel)]="assistanceData.issueDescription"
+                    required
+                    class="form-control"
+                    rows="5"
+                    placeholder="Please provide as much detail as possible about the issue you're experiencing...">
+                </textarea>
+                <div class="input-border"></div>
+            </div>
         </div>
- 
-        <!-- <div class="form-group">
-            <label for="status">Status</label>
-            <select
-                id="status"
-                name="status"
-                [(ngModel)]="assistanceData.status"
-                required
-                class="form-control">
-                <option value="Pending">Pending</option>
-               
-            </select>
-        </div> -->
  
         <div class="form-actions">
             <button type="submit" [disabled]="!assistanceForm.valid" class="btn btn-primary">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22,2 15,22 11,13 2,9 22,2"></polygon>
+                </svg>
                 Submit Request
-            </button>
-            <button type="button" routerLink="/assistance" class="btn btn-secondary">
-                Cancel
             </button>
         </div>
     </form>
-    <button (click)="goBack()" class="btn btn-secondary">Back</button>
+    
+    <div class="back-button-wrapper">
+        <button (click)="goBack()" class="btn btn-back">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <polyline points="15,18 9,12 15,6"></polyline>
+            </svg>
+            Back
+        </button>
+    </div>
 </div>
- 
