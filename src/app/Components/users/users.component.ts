@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  public userForm!: FormGroup; // Reactive form instance
-  public userID: number | null = null; // Separate variable for userID
+  public userForm!: FormGroup;
+  public userID: number | null = null;
   public userList: User[] = [];
   public isEditing: boolean = false;
   public successMessage: string = '';
@@ -23,13 +23,12 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUsers();
-
-    // Initialize the reactive form
     this.userForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      contactNumber: ['', Validators.required]
+      contactNumber: ['', Validators.required],
+      role: ['', Validators.required]
     });
   }
 
@@ -48,18 +47,19 @@ export class UsersComponent implements OnInit {
 
   public editUser(user: User): void {
     this.isEditing = true;
-    this.userID = user.userID!; // Store userID separately
+    this.userID = user.userID!;
     this.userForm.patchValue({
       name: user.name,
       email: user.email,
       password: user.password,
-      contactNumber: user.contactNumber
+      contactNumber: user.contactNumber,
+      role: user.role // Make sure 'role' exists on User model
     });
     this.clearMessages();
   }
 
   public updateUser(): void {
-    if (this.userForm.valid && this.userID) {
+    if (this.userForm.valid && this.userID !== null) {
       this.clearMessages();
       this.userService.updateUser(this.userID, this.userForm.value).subscribe({
         next: () => {
@@ -82,7 +82,7 @@ export class UsersComponent implements OnInit {
       this.userService.deleteUser(userID).subscribe({
         next: () => {
           this.successMessage = 'User deleted successfully';
-          this.loadUsers(); // Refresh the user list
+          this.loadUsers();
         },
         error: (error: Error) => {
           console.error('Error deleting user:', error);
@@ -95,7 +95,7 @@ export class UsersComponent implements OnInit {
   public resetForm(): void {
     this.clearMessages();
     this.userForm.reset();
-    this.userID = null; // Reset userID
+    this.userID = null;
     this.isEditing = false;
   }
 
