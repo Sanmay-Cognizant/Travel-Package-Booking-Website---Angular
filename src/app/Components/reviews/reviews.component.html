@@ -127,6 +127,9 @@
   </div>
   <span class="review-date">{{ review.timeStamp | date:'mediumDate' }}</span>
   </div>
+  <span class="review-user">
+  Reviewed by: {{ userMap[review.userID] || 'Anonymous' }}
+</span>
   <p class="review-text">{{ review.comment }}</p>
   <div class="specific-ratings">
   @if (review.foodReview) {
