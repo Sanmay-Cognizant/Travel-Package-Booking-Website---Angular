@@ -10,6 +10,7 @@ export interface User {
   email: string;
   password: string;
   contactNumber: string;
+  role: string;
 }
 
 @Injectable({
