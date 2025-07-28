@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule, Location } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Review, ReviewserviceService } from '../../Services/reviewservice.service';
+import { UserService } from '../../Services/user.service';
  
 interface HoverStates {
   overall: number;
@@ -47,12 +48,13 @@ export class ReviewsComponent implements OnInit {
     travelAgentReview: 0
   };
   userRole: string | null = localStorage.getItem('userRole');
- 
+ userMap: { [key: number]: string } = {};
  
   constructor(
     private reviewService: ReviewserviceService,
     private fb: FormBuilder,
     private location: Location,
+    private userService: UserService,
   ) {
     this.reviewForm = this.initializeForm();
     this.loadPackageIdFromStorage();
@@ -78,10 +80,26 @@ export class ReviewsComponent implements OnInit {
   }
  
   ngOnInit(): void {
-    if (this.currentPackageId) {
-      this.loadReviewsByPackageId(this.currentPackageId);
-    }
+  if (this.currentPackageId) {
+    this.loadReviewsByPackageId(this.currentPackageId);
   }
+
+  this.loadUserNames();
+}
+
+loadUserNames(): void {
+  this.userService.getBasicUserInfo().subscribe({
+    next: (users) => {
+      this.userMap = {};
+      for (const user of users) {
+        this.userMap[user.userID] = user.name;
+      }
+    },
+    error: (err) => {
+      console.error('Failed to load user names:', err);
+    }
+  });
+}
  
   calculateAverageRating(): void {
     if (this.reviews.length === 0) {
