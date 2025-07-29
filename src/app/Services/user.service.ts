@@ -10,6 +10,7 @@ export interface User {
   email: string;
   password: string;
   contactNumber: string;
+  role: string;
 }
 
 @Injectable({
@@ -27,6 +28,11 @@ export class UserService {
     return this.http.get<User[]>(this.apiUrl,{ headers });
   }
  
+  getBasicUserInfo(): Observable<{ userID: number; name: string; email: string }[]> {
+  const url = `${this.apiUrl}/public/basic-info`;
+  return this.http.get<{ userID: number; name: string; email: string }[]>(url);
+}
+
 
   updateUser(userID: number, userData: Omit<User, 'userID'>): Observable<void> {
     const token = this.authService.getToken();  
